@@ -24,13 +24,14 @@ class CreateRegisterTable extends Migration
             $table->date('dob');
             $table->string('country');
             $table->string('gender');
-            $table->string('talent');
+            $table->text('talent');
             $table->string('language');
-            $table->string('link');
+            $table->text('link')->nullable();
+            $table->text('video')->nullable();
             $table->string('Question1');
             $table->string('Question2');
             $table->string('Question3');
-            $table->string('image');
+            $table->text('image');
             $table->text('message');
             $table->timestamps();
         });

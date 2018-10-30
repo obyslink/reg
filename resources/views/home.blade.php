@@ -251,8 +251,12 @@
                                 <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="form_name">Links to Videos/website/instagram handle etc *</label>
-                                            <input id="form_name" type="url" name="link" class="form-control" placeholder="upload a resource link *" required="required" data-error="upload a resource please">
+                                            <input id="form_name" type="url" name="link" class="form-control" placeholder="upload a resource link *" data-error="upload a resource please">
                                             <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div>Or Upload Video</div>
+                                        <div >
+                                            <input type="file" name="video" accept="video/*" />
                                         </div>
                                     </div>
 

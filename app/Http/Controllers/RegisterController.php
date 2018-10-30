@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
 use App\Register;
+use Cloudder;
 
 class RegisterController extends Controller
 {
@@ -24,7 +25,7 @@ class RegisterController extends Controller
             'talent' => 'required',
             'language' => 'required',
             'message' => 'required',
-            'link' => 'required',
+            'video' => 'mimes:mp4,mov,ogg,qt | max:25000',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'Question1' =>'required',
             'Question2' => 'required',
@@ -52,20 +53,45 @@ class RegisterController extends Controller
      $register->Question2 = $request->input('Question2');
      $register->Question3 = $request->input('Question3');
      
+            //upload to server
 
-     if(Input::hasFile('image')){
-        $file = Input::file('image');
-        $file->move(public_path().'/passports_photo/',
-        $file->getClientOriginalName());
-        $url = URL::to("/").'/passports_photo/'.
-        $file->getClientOriginalName();
+    //  if(Input::hasFile('image')){
+    //     $file = Input::file('image');
+    //     $file->move(public_path().'/passports_photo/',
+    //     $file->getClientOriginalName());
+    //     $url = URL::to("/").'/passports_photo/'.
+    //     $file->getClientOriginalName();
         
-    }
-    $register->image = $url;
+    // }
+
+    // upload image to cloudinary
+    
+    $image = $request->file('image');
+    $i_name = $request->file('image')->getClientOriginalName();
+    $image_name = $request->file('image')->getRealPath();;
+    Cloudder::upload($image_name, null);
+    list($width, $height) = getimagesize($image_name);
+    $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
+
+    //save to uploads directory
+    // $image->move(public_path("passports_photo"), $name);
+
+    // upload video to cloudinary
+
+    $video = $request->file('video');
+
+    $v_name = $request->file('video')->getClientOriginalName();
+    $video_name = $request->file('video')->getRealPath();;
+    Cloudder::uploadVideo($video_name, null);
+    //list($vwidth, $vheight) = getimagesize($video_name);
+    
+   $video_url= Cloudder::show(Cloudder::getPublicId(), ["resource_type" => "video", "width" => 300, "height"=>200]);
+    
+
+    $register->image = $image_url;
+    $register->video = $video_url;
     $register->save();
     
-    // return back()->with('success', 'Thanks for contacting us!');
-
         return redirect()->back()->with('message', 'Registration successful! ');
 
     }
