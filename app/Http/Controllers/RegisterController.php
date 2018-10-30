@@ -67,7 +67,8 @@ class RegisterController extends Controller
     // upload image to cloudinary
     
     $image = $request->file('image');
-    
+
+   
     $i_name = $request->file('image')->getClientOriginalName();
     $image_name = $request->file('image')->getRealPath();;
     Cloudder::upload($image_name, null);
@@ -81,11 +82,12 @@ class RegisterController extends Controller
 
     $video = $request->file('video');
 
+    if ($request->hasFile('video')) {
     $v_name = $request->file('video')->getClientOriginalName();
     $video_name = $request->file('video')->getRealPath();;
     Cloudder::uploadVideo($video_name, null);
     //list($vwidth, $vheight) = getimagesize($video_name);
-    
+    }
    $video_url= Cloudder::show(Cloudder::getPublicId(), ["resource_type" => "video", "width" => 300, "height"=>200]);
     
 
