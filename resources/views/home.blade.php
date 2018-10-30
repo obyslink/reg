@@ -254,7 +254,7 @@
                                             <input id="form_name" type="url" name="link" class="form-control" placeholder="upload a resource link *" data-error="upload a resource please">
                                             <div class="help-block with-errors"></div>
                                         </div>
-                                        <div>Or Upload Video</div>
+                                        <div>Or Upload Video </div>
                                         <div >
                                             <input type="file" name="video" accept="video/*" />
                                         </div>
