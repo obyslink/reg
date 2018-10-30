@@ -53,7 +53,7 @@ class RegisterController extends Controller
      $register->Question2 = $request->input('Question2');
      $register->Question3 = $request->input('Question3');
      
-            //upload to server
+            //upload to your server
 
     //  if(Input::hasFile('image')){
     //     $file = Input::file('image');
@@ -67,6 +67,7 @@ class RegisterController extends Controller
     // upload image to cloudinary
     
     $image = $request->file('image');
+    
     $i_name = $request->file('image')->getClientOriginalName();
     $image_name = $request->file('image')->getRealPath();;
     Cloudder::upload($image_name, null);
