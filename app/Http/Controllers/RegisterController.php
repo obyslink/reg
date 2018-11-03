@@ -12,6 +12,7 @@ use Cloudder;
 class RegisterController extends Controller
 {
     public function register(Request $request){
+        ini_set('memory_limit','256M');
 
         $request->validate([
             'name' => 'required',
@@ -25,7 +26,7 @@ class RegisterController extends Controller
             'talent' => 'required',
             'language' => 'required',
             'message' => 'required',
-            'video' => 'mimes:mp4,mov,ogg,qt | max:25000',
+            'video' => 'mimes:mp4,mov,ogg,qt | max:7500',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'Question1' =>'required',
             'Question2' => 'required',
@@ -88,7 +89,7 @@ class RegisterController extends Controller
     Cloudder::uploadVideo($video_name, null);
     //list($vwidth, $vheight) = getimagesize($video_name);
     }
-   $video_url= Cloudder::show(Cloudder::getPublicId(), ["resource_type" => "video", "width" => 300, "height"=>200]);
+   $video_url= Cloudder::show(Cloudder::getPublicId(), ["resource_type" => "video", "width" => 300, "height"=>200, "timeout" => 600]);
     
 
     $register->image = $image_url;
@@ -102,6 +103,9 @@ class RegisterController extends Controller
 
     public function terms(){
         return view('terms');
+    }
+    public function test(){
+        return 'test';
     }
 
     

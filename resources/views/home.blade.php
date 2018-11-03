@@ -240,35 +240,33 @@
                                     <div class="form-group">
                             
                                         <label for="form_name">Upload full image *</label><br>
-                                        <input type="file" name="image" accept="image/x-png,image/jpeg,image/png" />
+                                        <input type="file" name="image" accept="image/x-png,image/jpeg,image/png" required="required" data-error="an image is required. />
 
                                     </div>
                                 </div>
 
-                                
-
-
+                            
                                 <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="form_name">Links to Videos/website/instagram handle etc *</label>
-                                            <input id="form_name" type="url" name="link" class="form-control" placeholder="upload a resource link *" data-error="upload a resource please">
-                                            <div class="help-block with-errors"></div>
+                                    <div class="form-group">
+                                        <label for="form_name">Links to Videos/website/instagram handle etc *</label>
+                                        <input id="form_name" type="url" name="link" class="form-control" placeholder="upload a resource link *" data-error="upload a resource please"/>
+                                        <div class="help-block with-errors"></div>
                                         </div>
-                                        <div>Or Upload Video </div>
+                                        <div>Or Upload One minute Video (Max 7mb) </div>
                                         <div >
                                             <input type="file" name="video" accept="video/*" />
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
-                                            <div class="form-group">
-                                    
-                                            <label for="form_name">I have read and agree to <a href="{{ route('terms') }}" target="_blank"> terms and conditions </a>*</label><br>
-                                                <input type="radio" name="Question3" value="no" checked> No<br>
-                                                <input type="radio" name="Question3" value="yes"> Yes<br>
+                                        <div class="form-group">
+                                
+                                        <label for="form_name">I have read and agree to <a href="{{ route('terms') }}" target="_blank"> terms and conditions </a>*</label><br>
+                                            <input type="radio" name="Question3" value="no" checked> No<br>
+                                            <input type="radio" name="Question3" value="yes"> Yes<br>
 
-                                            </div>
                                         </div>
+                                    </div>
 
                 <div class="col-md-12">
                     <div class="form-group">
