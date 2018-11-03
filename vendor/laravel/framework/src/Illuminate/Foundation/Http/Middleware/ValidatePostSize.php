@@ -19,6 +19,7 @@ class ValidatePostSize
     public function handle($request, Closure $next)
     {
         $max = $this->getPostMaxSize();
+        //$max = -1;
 
         if ($max > 0 && $request->server('CONTENT_LENGTH') > $max) {
             throw new PostTooLargeException;
@@ -34,6 +35,7 @@ class ValidatePostSize
      */
     protected function getPostMaxSize()
     {
+        
         if (is_numeric($postMaxSize = ini_get('post_max_size'))) {
             return (int) $postMaxSize;
         }
